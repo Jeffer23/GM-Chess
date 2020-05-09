@@ -1,0 +1,29 @@
+.header{
+    width: 100%;
+    background-color: #3f51b5 !important;
+}
+
+.header button{
+    margin-top: 1%;
+    margin-left: 1%;
+}
+.title{
+    display: inline-block;
+    color: white;
+    margin-left: 1%;
+}
+
+.sideNavBar{
+    background-color: #ff4081;
+}
+
+.userName{
+    margin-left: 10%;
+}
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+

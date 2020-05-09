@@ -1,0 +1,82 @@
+@media only screen and (max-width:1980px) {
+    /*For Desktop */
+    #chessBoard{
+        padding-left:5% !important;
+        width : 80%;
+        float: left;
+    }
+    .GMPlayArea{
+        display: inline-block;
+        width : 40%;
+        float: left;
+    }
+    .computer{
+        margin-left: 5%;
+    }
+
+    .computer h2{
+        margin:0;
+    }
+    .player {
+        float: right !important;
+        margin-right: 15%;
+    }
+
+    .moves{
+        margin-left: 10%;
+        float: right;
+        width: 50%;
+    }
+
+    .action {
+        float: left;
+        margin-left: 5%;
+        margin-top: 3%;
+        width:50%
+    }
+
+    .action button{
+        margin-right: 5%;
+    }
+
+    .computerProgressBar{
+        width : 72%;
+        display: inline-flex;
+        margin-left: 1.25%;
+    }
+}
+@media only screen and (max-width:1200px) {
+/* For Mobile */
+#chessBoard{
+    padding-left: 2.5% !important;
+    width : 95%;
+}
+.GMPlayArea{
+    display: inline-block;
+    width : 100%;
+}
+.computer{
+    margin-left: 5%;
+}
+.computer h2{
+    margin:0;
+}
+.player {
+    float: right !important;
+    margin-right: 2.5%;
+}
+.moves{
+    float:left;
+    margin-left: 2.5%;
+    width:95%
+}
+.action {
+    float: left;
+    margin-left: 5%;
+    margin-top: 3%;
+    width:70%
+}
+.action button{
+    margin-right: 5%;
+}
+}

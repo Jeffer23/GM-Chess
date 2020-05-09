@@ -1,0 +1,36 @@
+<div>
+      <div class="GMPlayArea">
+        <div class="computer">
+            <h2>Pemela(Computer Engine)</h2>
+            <span id="computerTime">{{blackTime}}</span>
+            <mat-progress-bar mode="indeterminate" class="computerProgressBar" *ngIf="computerThinking"></mat-progress-bar>
+        </div>
+        <div id="chessBoard"></div>
+        <div class="player">
+            <span id="playerTime">{{whiteTime}}</span>
+            <h2>You</h2>
+        </div>
+        <br>
+        <div class="action">
+            <button mat-flat-button color="accent" (click)="undo()">
+                <mat-icon>replay</mat-icon>
+                Undo
+            </button>
+            <button mat-flat-button color="accent" (click)="newGame()">
+                <mat-icon>autorenew</mat-icon>
+                New Game
+            </button>
+        </div>
+      </div>
+      <br><br><br>
+
+    <div class="moves">
+        <hr>
+        <h3>Moves:</h3>
+        <div id="pgn">{{pgn}}</div>
+        <hr>
+    </div>
+    <div class="settings">
+       
+    </div>
+</div>
