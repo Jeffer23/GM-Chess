@@ -5,6 +5,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import {LayoutModule} from '@angular/cdk/layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,8 @@ import { PlayWithComputerComponent } from './play-with-computer/play-with-comput
 import { PlayWithComputerSettingsComponent } from './play-with-computer-settings/play-with-computer-settings.component';
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChessDialogComponent } from './chess-dialog/chess-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     PlayWithComputerComponent,
     PlayWithComputerSettingsComponent,
-    MenuComponent
+    MenuComponent,
+    ChessDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

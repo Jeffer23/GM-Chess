@@ -1,82 +1,91 @@
 @media only screen and (max-width:1980px) {
     /*For Desktop */
-    #chessBoard{
-        padding-left:5% !important;
-        width : 80%;
+    .GMPlayArea {
+        width:50%;
         float: left;
-    }
-    .GMPlayArea{
-        display: inline-block;
-        width : 40%;
-        float: left;
-    }
-    .computer{
-        margin-left: 5%;
+        padding-left: 2.5%;
+        padding-right: 2.5%;
     }
 
-    .computer h2{
-        margin:0;
-    }
-    .player {
-        float: right !important;
-        margin-right: 15%;
+    .computer {
+        width:65%;
     }
 
-    .moves{
-        margin-left: 10%;
-        float: right;
-        width: 50%;
+    .computer .line1 {
+        display: flex;
     }
 
-    .action {
-        float: left;
-        margin-left: 5%;
-        margin-top: 3%;
-        width:50%
+    .computer .line1 h2 {
+        margin: 0px;
     }
 
-    .action button{
-        margin-right: 5%;
+    .computer .line2 {
+        display: flex;
+    }
+
+    #computerStatus {
+        color: red;
     }
 
     .computerProgressBar{
-        width : 72%;
-        display: inline-flex;
-        margin-left: 1.25%;
+        margin-top: 8px;
+    }
+    #chessBoard{
+        width : 65%;
+        float: left;
+    }
+    
+    .action {
+        float: right;
+        display: grid;
+        width: 20%;
+        margin-left: 5%;
+        margin-right: 10%;
+    }
+
+    .action button {
+        margin-top: 10%;
+    }
+
+    .player {
+        width:65%;
+    }
+    .player .line2 {
+        display: flex;
+    }
+    #playerStatus {
+        color: red;
     }
 }
 @media only screen and (max-width:1200px) {
 /* For Mobile */
-#chessBoard{
-    padding-left: 2.5% !important;
-    width : 95%;
-}
-.GMPlayArea{
-    display: inline-block;
-    width : 100%;
-}
-.computer{
-    margin-left: 5%;
-}
-.computer h2{
-    margin:0;
-}
-.player {
-    float: right !important;
-    margin-right: 2.5%;
-}
-.moves{
-    float:left;
-    margin-left: 2.5%;
-    width:95%
-}
-.action {
-    float: left;
-    margin-left: 5%;
-    margin-top: 3%;
-    width:70%
-}
-.action button{
-    margin-right: 5%;
-}
+    .GMPlayArea {
+        width:100%;
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+    }
+
+    .computer{
+        width:100%;
+    }
+
+    #chessBoard {
+        width: 100%;
+    }
+    
+    .player {
+        width: 30%;
+        float:left;
+    }
+
+    .action {
+        width: 70%;
+        float: right;
+        display: inline-block;
+        margin: 0%;
+    }
+
+    .action button {
+        margin-left: 5%;
+    }
 }

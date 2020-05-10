@@ -1,0 +1,10 @@
+.dialogHeader {
+    width: 100%;
+    background-color: #3f51b5 !important;
+    text-align: center;
+    color: white;
+}
+
+.dialogContent {
+    text-align: center;
+}

@@ -1,26 +1,41 @@
 <div>
       <div class="GMPlayArea">
         <div class="computer">
-            <h2>Pemela(Computer Engine)</h2>
-            <span id="computerTime">{{blackTime}}</span>
-            <mat-progress-bar mode="indeterminate" class="computerProgressBar" *ngIf="computerThinking"></mat-progress-bar>
+            <div class="line1">
+                <h2>Pemela(Computer Engine)</h2>
+                <h5 id="computerStatus">{{computerStatus}}</h5>
+            </div>
+            <div class="line2">
+                <span id="computerTime">{{blackTime}}</span>
+                <mat-progress-bar mode="indeterminate" class="computerProgressBar" *ngIf="isEngineRunning"></mat-progress-bar>
+            </div>
         </div>
         <div id="chessBoard"></div>
+        <div class="action">
+            <button mat-flat-button color="accent" (click)="undo()" [disabled]="isEngineRunning">
+                <mat-icon>replay</mat-icon>
+                <span *ngIf="!isMobileScreen">Undo</span>
+            </button>
+            <button mat-flat-button color="accent" (click)="newGame()" [disabled]="isEngineRunning">
+                <mat-icon>autorenew</mat-icon>
+                <span *ngIf="!isMobileScreen">New Game</span>
+            </button>
+            <button mat-flat-button color="accent" (click)="switchColor()" [disabled]="isEngineRunning">
+                <mat-icon>import_export</mat-icon>
+                <span *ngIf="!isMobileScreen">Flip Board</span>
+            </button>
+        </div>
         <div class="player">
-            <span id="playerTime">{{whiteTime}}</span>
-            <h2>You</h2>
+            <div class="line1">
+                <span id="playerTime">{{whiteTime}}</span>
+            </div>
+            <div class="line2">
+                <h2>You</h2>
+                <h5 id="playerStatus">{{playerStatus}}</h5>
+            </div>
         </div>
         <br>
-        <div class="action">
-            <button mat-flat-button color="accent" (click)="undo()">
-                <mat-icon>replay</mat-icon>
-                Undo
-            </button>
-            <button mat-flat-button color="accent" (click)="newGame()">
-                <mat-icon>autorenew</mat-icon>
-                New Game
-            </button>
-        </div>
+        
       </div>
       <br><br><br>
 

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "JeffChess": {
+    "GM-Chess": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/GMChess",
+            "outputPath": "dist/GM-Chess",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -35,7 +35,7 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/chessboardjs/www/releases/0.3.0/js/chessboard-0.3.0.min.js",
+              "./src/assets/js/chessboard-no-dragging.js",
               "./node_modules/chess.js/chess.js",
               "./node_modules/stockfish/src/stockfish.js",
               "./node_modules/stockfish/src/stockfish.asm.js"
@@ -75,18 +75,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "GMChess:build"
+            "browserTarget": "GM-Chess:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "GMChess:build:production"
+              "browserTarget": "GM-Chess:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "GMChess:build"
+            "browserTarget": "GM-Chess:build"
           }
         },
         "test": {
@@ -112,7 +112,7 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/chessboardjs/www/releases/0.3.0/js/chessboard-0.3.0.min.js",
+              "./src/assets/js/chessboard-no-dragging.js",
               "./node_modules/chess.js/chess.js",
               "./node_modules/stockfish/src/stockfish.js",
               "./node_modules/stockfish/src/stockfish.asm.js"
@@ -136,11 +136,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "GMChess:serve"
+            "devServerTarget": "GM-Chess:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "GMChess:serve:production"
+              "devServerTarget": "GM-Chess:serve:production"
             }
           }
         }

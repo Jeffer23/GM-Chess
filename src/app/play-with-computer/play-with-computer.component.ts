@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { ChessDialogComponent } from '../chess-dialog/chess-dialog.component';
 import * as Chess from 'chess.js';
 declare var ChessBoard:any;
 declare var Stockfish:any;
@@ -9,6 +12,7 @@ declare var Stockfish:any;
   styleUrls: ['./play-with-computer.component.css']
 })
 export class PlayWithComputerComponent implements OnInit {
+  isMobileScreen;
   board:any;
   game:any;
   status: string;
@@ -22,22 +26,22 @@ export class PlayWithComputerComponent implements OnInit {
   clockTimeoutID;
   isEngineRunning:boolean;
   announced_game_over;
-  computerThinking : boolean;
+  //computerThinking : boolean;
+  computerStatus : string;
+  playerStatus : string;
   private chessClock: ChessClock;
   public whiteTime:string;
   public blackTime:string;
 
-  constructor() {
+  constructor(private dialog:MatDialog, public breakpointObserver: BreakpointObserver) {
     this.engine = new Worker("/assets/js/stockfish.js");
     this.evaler = new Worker("/assets/js/stockfish.js");
     this.displayScore = false;
     this.time = new Time();
-    this.playerColor = "white";
     this.clockTimeoutID = null;
     this.isEngineRunning = false;
-    this.computerThinking = false;
     this.chessClock = new ChessClock(0,15,0);
-
+    this.isMobileScreen =  breakpointObserver.isMatched('(max-width: 1200px)');
     setInterval(()=>{
       /* Time Interval to update the clock during play*/
       this.whiteTime = this.chessClock.whiteClock.getTime();
@@ -48,7 +52,7 @@ export class PlayWithComputerComponent implements OnInit {
   ngOnInit(): void {
     const self = this;
     this.engineStatus = new EngineStatus();
-    this.game = new Chess();
+    this.game = new Chess();//'rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3'
     this.board = ChessBoard('chessBoard',{
       draggable: true,
       position: 'start',
@@ -62,6 +66,7 @@ export class PlayWithComputerComponent implements OnInit {
         self.onSnapEnd(); 
       }
     });
+    this.setPlayerColor('white');
     self.displayStatus;
     self.uciCmd('uci');
 
@@ -76,6 +81,9 @@ export class PlayWithComputerComponent implements OnInit {
    
 
     self.start();
+
+    this.chessClock = new ChessClock(0,15,0);
+    
   }
 
   private onDragStart (source, piece, position, orientation) {
@@ -110,67 +118,6 @@ export class PlayWithComputerComponent implements OnInit {
     }
   }
 
-  /*private displayClock(color, t) {
-    var isRunning = false;
-    if(this.time.startTime > 0 && color == this.time.clockColor) {
-        t = Math.max(0, t + this.time.startTime - Date.now());
-        isRunning = true;
-    }
-    var id = color == this.playerColor ? '#time2' : '#time1';
-    var sec = Math.ceil(t / 1000);
-    var min = Math.floor(sec / 60);
-    sec -= min * 60;
-    var hours = Math.floor(min / 60);
-    min -= hours * 60;
-    var display = hours + ':' + ('0' + min).slice(-2) + ':' + ('0' + sec).slice(-2);
-    if(isRunning) {
-        display += sec & 1 ? ' <--' : ' <-';
-    }
-    //$(id).text(display);
-    //TODO::
-
-    console.log("Display : " + display);
-  }*/
-
-  /*private updateClock() {
-    this.displayClock('white', this.time.wtime);
-    this.displayClock('black', this.time.btime);
-  }*/
-
-  /*private clockTick() {
-    this.updateClock;
-    var t = (this.time.clockColor == 'white' ? this.time.wtime : this.time.btime) + this.time.startTime - Date.now();
-    var timeToNextSecond = (t % 1000) + 1;
-  }*/
-
-  /*private stopClock() {
-    if(this.clockTimeoutID !== null) {
-        clearTimeout(this.clockTimeoutID);
-        this.clockTimeoutID = null;
-    }
-    if(this.time.startTime > 0) {
-        var elapsed = Date.now() - this.time.startTime;
-        this.time.startTime = null;
-        if(this.time.clockColor == 'white') {
-            this.time.wtime = Math.max(0, this.time.wtime - elapsed);
-        } else {
-            this.time.btime = Math.max(0, this.time.btime - elapsed);
-        }
-    }
-  }*/
-
-  /*private startClock() {
-    if(this.game.turn() == 'w') {
-        this.time.wtime += this.time.winc;
-        this.time.clockColor = 'white';
-    } else {
-        this.time.btime += this.time.binc;
-        this.time.clockColor = 'black';
-    }
-    this.time.startTime = Date.now();
-    this.clockTick();
-  }*/
-
   private get_moves()
     {
         var moves = '';
@@ -185,10 +132,8 @@ export class PlayWithComputerComponent implements OnInit {
     }
 
     private prepareMove() {
-     // this.stopClock();
       this.pgn = this.game.pgn();
       this.board.position(this.game.fen());
-      //this.updateClock;
       var turn = this.game.turn() == 'w' ? 'white' : 'black';
       if(!this.game.game_over()) {
           if(turn != this.playerColor) {
@@ -203,6 +148,32 @@ export class PlayWithComputerComponent implements OnInit {
               }
               this.isEngineRunning = true;
           }
+      } if(this.game.in_checkmate()){
+        this.dialog.open(ChessDialogComponent, {
+          width: '70%',
+          data : {reason : "CheckMate"}
+        });
+      } else if(this.game.in_check()){
+        if(turn == "white"){
+          this.playerStatus = "Check";
+        } else if(turn == "black"){
+          this.computerStatus = "Check";
+        }
+      } else if(this.game.in_draw() || this.game.in_threefold_repetition()){
+        this.dialog.open(ChessDialogComponent, {
+          width: '70%',
+          data : {reason : "Draw"}
+        });
+      } else if(this.game.in_stalemate()){
+        this.dialog.open(ChessDialogComponent, {
+          width: '70%',
+          data : {reason : "Stalemate"}
+        });
+      } else if(this.game.insufficient_material()){
+        this.dialog.open(ChessDialogComponent, {
+          width: '70%',
+          data : {reason : "Draw - Insufficient Material"}
+        });
       }
   }
 
@@ -224,7 +195,6 @@ export class PlayWithComputerComponent implements OnInit {
   }
 
   private engineOnmessage(event) {
-    this.computerThinking = true;
     var line;
     
     if (event && typeof event === "object") {
@@ -235,10 +205,8 @@ export class PlayWithComputerComponent implements OnInit {
     console.log("Reply: " + line)
     if(line == 'uciok') {
         this.engineStatus.engineLoaded = true;
-        this.computerThinking = false;
     } else if(line == 'readyok') {
       this.engineStatus.engineReady = true;
-      this.computerThinking = false;
     } else {
         var match = line.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbn])?/);
         /// Did the AI move?
@@ -247,8 +215,7 @@ export class PlayWithComputerComponent implements OnInit {
           this.game.move({from: match[1], to: match[2], promotion: match[3]});
           this.prepareMove();
           this.uciCmd("eval",  this.evaler);
-          this.computerThinking = false;
-          this.stopBlackClock();
+            this.stopPlayer2Clock();
             //uciCmd("eval");
         /// Is it sending feedback?
         } else if(match = line.match(/^info .*\bdepth (\d+) .*\bnps (\d+)/)) {
@@ -287,7 +254,7 @@ export class PlayWithComputerComponent implements OnInit {
     if (move === null) return 'snapback';
 
     this.prepareMove();
-    this.stopWhiteClock();
+    this.stopPlayer1Clock();
   };
 
   private onSnapEnd() {
@@ -297,7 +264,7 @@ export class PlayWithComputerComponent implements OnInit {
   public reset(){
     this.uciCmd('setoption name Contempt value 0');
     //uciCmd('setoption name Skill Level value 20');
-    this.setSkillLevel(0);
+    this.setSkillLevel(20);
     this.uciCmd('setoption name King Safety value 0'); /// Agressive 100 (it's now symetric)
   }
 
@@ -376,9 +343,9 @@ export class PlayWithComputerComponent implements OnInit {
     this.engineStatus.engineReady = false;
     this.engineStatus.search = null;
     this.displayStatus();
+    this.setSkillLevel(14);
     this.prepareMove();
     this.announced_game_over = false;
-    this.computerThinking = false;
   }
 
   public undo(){
@@ -396,17 +363,32 @@ export class PlayWithComputerComponent implements OnInit {
     this.ngOnInit();
   }
 
-  private stopWhiteClock(){
-    this.chessClock.startWhitePlay();
-    this.chessClock.stop("white");
-    this.whiteTime = this.chessClock.whiteClock.getTime();
+  public switchColor(){
+    if(!this.isEngineRunning){
+      this.stopPlayer1Clock();
+      if(this.playerColor == "white") {
+        this.setPlayerColor("black");
+      }
+      else if(this.playerColor == "black") {
+        this.setPlayerColor("white");
+      }
+      this.start();
+    } else {
+      console.log("Let the Computer Stop Thinking");
+    }
+    
   }
 
-  private stopBlackClock(){
+  private stopPlayer1Clock(){
+    this.chessClock.startWhitePlay();
+    this.chessClock.stop("white");
+  }
+
+  private stopPlayer2Clock(){
     this.chessClock.startBlackPlay();
     this.chessClock.stop("black");
-    this.blackTime = this.chessClock.blackClock.getTime();
   }
+
 }
 
 class EngineStatus{
@@ -417,12 +399,6 @@ class EngineStatus{
 }
 
 class Time {
-  public  startTime: number;
-  public clockColor : string;
-  public wtime : number;
-  public btime : number;
-  public winc : number;
-  public binc : number;
   public depth : string;
   public nodes : string;
   public level : number;
