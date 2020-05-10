@@ -132,6 +132,8 @@ export class PlayWithComputerComponent implements OnInit {
     }
 
     private prepareMove() {
+      this.playerStatus = "";
+      this.computerStatus = "";
       this.pgn = this.game.pgn();
       this.board.position(this.game.fen());
       var turn = this.game.turn() == 'w' ? 'white' : 'black';
@@ -343,7 +345,7 @@ export class PlayWithComputerComponent implements OnInit {
     this.engineStatus.engineReady = false;
     this.engineStatus.search = null;
     this.displayStatus();
-    this.setSkillLevel(14);
+    this.setSkillLevel(20);
     this.prepareMove();
     this.announced_game_over = false;
   }
