@@ -61,8 +61,8 @@
 /* For Mobile */
     .GMPlayArea {
         width:100%;
-        padding-left: 2.5%;
-        padding-right: 2.5%;
+        padding-left: 0%;
+        padding-right: 0%;
     }
 
     .computer{
@@ -71,6 +71,7 @@
 
     #chessBoard {
         width: 100%;
+        padding-left: 0.5%;
     }
     
     .player {
