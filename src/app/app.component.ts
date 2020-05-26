@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SESSION_ID } from './constants/session-constant'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'JeffChess';
+  isUserLoggedIn: boolean;
+
+  constructor(){
+    if(localStorage.getItem(SESSION_ID.userId))
+      this.isUserLoggedIn = true;
+  }
 }

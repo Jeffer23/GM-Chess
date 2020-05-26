@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -7,8 +10,10 @@ import {MatListModule} from '@angular/material/list';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {LayoutModule} from '@angular/cdk/layout';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatExpansionModule} from '@angular/material/expansion';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { LoginComponent } from './login/login.component';
@@ -18,6 +23,8 @@ import { PlayWithComputerSettingsComponent } from './play-with-computer-settings
 import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChessDialogComponent } from './chess-dialog/chess-dialog.component';
+import { OnlineDashboardComponent } from './online-dashboard/online-dashboard.component';
+
 
 
 @NgModule({
@@ -29,7 +36,8 @@ import { ChessDialogComponent } from './chess-dialog/chess-dialog.component';
     PlayWithComputerComponent,
     PlayWithComputerSettingsComponent,
     MenuComponent,
-    ChessDialogComponent
+    ChessDialogComponent,
+    OnlineDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,11 @@ import { ChessDialogComponent } from './chess-dialog/chess-dialog.component';
     MatListModule,
     MatProgressBarModule,
     MatDialogModule,
-    LayoutModule
+    LayoutModule,
+    MatCheckboxModule,
+    HttpClientModule,
+    MatBadgeModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

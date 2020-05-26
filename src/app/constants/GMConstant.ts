@@ -1,0 +1,9 @@
+const httpProtocol = "http://";
+const webSocketProtocol = "ws://";
+const dns = "ec2-18-222-173-205.us-east-2.compute.amazonaws.com:8080";
+//const dns = "localhost:9090"
+const httpHost = httpProtocol + dns;
+const webSocketHost = webSocketProtocol + dns;
+export const webSocketURL = webSocketHost + "/GM-Chess/findPlayer";
+export const loginService = httpHost + "/GM-Chess/user/authenticate";
+export const registeService = httpHost + "/GM-Chess/user/save";

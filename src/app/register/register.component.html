@@ -1,1 +1,36 @@
-<p>register works!</p>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+                <span class="login100-form-title" style="background-image: url(assets/images/registration-cover.png);">
+                    Register
+                </span>
+                
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username" style="margin-top: 10%;">
+                    <input class="input100" type="text" name="username" placeholder="Username" (blur)="user.userId=$event.target.value;">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "Please enter password">
+                    <input class="input100" type="password" name="pass" placeholder="Password"(blur)="user.password=$event.target.value;">
+                    <span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "Please re-enter password">
+                    <input class="input100" type="password" name="retypepass" placeholder="Re-type Password" (blur)="password=$event.target.value;">
+                    <span class="focus-input100"></span>
+                </div>
+
+                
+
+                <div class="container-login100-form-btn m-b-16">
+                    <button class="login100-form-btn" (click)="registerUser()">
+                        Register
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

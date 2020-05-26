@@ -1,3 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-badge-content {
+    background: #fff !important;
+    color:#3f51b5 !important;
+    z-index: -1;
+}
+
+.mat-expansion-panel {
+    background-color: #ff4081;
+    color: white;
+}
+
+.mat-list-item-content {
+    color: white;
+}
+
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+    background: #ff4081;
+}
+
+.pieces mat-icon {
+    height: 18px;
+    width: 18px;
+}
+
+.highlight-my-move{
+    background-color: #3f51b5 !important;
+}
+
+.highlight-opponent-move{
+    background-color: #ff4081 !important;
+}
+
+.mat-sidenav-content {
+    height: 100vh !important;
+}

@@ -2,39 +2,59 @@
       <div class="GMPlayArea">
         <div class="computer">
             <div class="line1">
-                <h2>Pemela(Computer Engine)</h2>
-                <h5 id="computerStatus">{{computerStatus}}</h5>
+                <div class="details">
+                    <h2>Pemela(Comp. Engine)</h2>
+                    <h5 id="computerStatus">{{computerStatus}}</h5>
+                </div>
+                <mat-progress-bar mode="indeterminate" class="computerProgressBar" [style]="isEngineRunning?'display:block;':'display:none;'" ></mat-progress-bar>
             </div>
             <div class="line2">
                 <span id="computerTime">{{blackTime}}</span>
-                <mat-progress-bar mode="indeterminate" class="computerProgressBar" *ngIf="isEngineRunning"></mat-progress-bar>
+                
+                <div class="GMpieces">
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.bQ : capturedPieces.wQ}}" *ngIf="computerColor == 'white'?capturedPieces.bQ : capturedPieces.wQ" svgIcon="{{playerColor}}Queen" aria-hidden="false" aria-label="Queen SVG Icon"></mat-icon>
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.bR : capturedPieces.wR}}" *ngIf="computerColor == 'white'?capturedPieces.bR : capturedPieces.wR" svgIcon="{{playerColor}}Rook" aria-hidden="false" aria-label="Rook SVG Icon"></mat-icon>
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.bB : capturedPieces.wB}}" *ngIf="computerColor == 'white'?capturedPieces.bB : capturedPieces.wB" svgIcon="{{playerColor}}Bishop" aria-hidden="false" aria-label="Bishop SVG Icon"></mat-icon>
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.bN : capturedPieces.wN}}" *ngIf="computerColor == 'white'?capturedPieces.bN : capturedPieces.wN" svgIcon="{{playerColor}}Knight" aria-hidden="false" aria-label="Knight SVG Icon"></mat-icon>
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.bP : capturedPieces.wP}}" *ngIf="computerColor == 'white'?capturedPieces.bP : capturedPieces.wP" svgIcon="{{playerColor}}Pawn" aria-hidden="false" aria-label="Pawn SVG Icon"></mat-icon>
+                </div>
             </div>
         </div>
         <div id="chessBoard"></div>
-        <div class="action">
-            <button mat-flat-button color="accent" (click)="undo()" [disabled]="isEngineRunning">
-                <mat-icon>replay</mat-icon>
-                <span *ngIf="!isMobileScreen">Undo</span>
-            </button>
-            <button mat-flat-button color="accent" (click)="newGame()" [disabled]="isEngineRunning">
-                <mat-icon>autorenew</mat-icon>
-                <span *ngIf="!isMobileScreen">New Game</span>
-            </button>
-            <button mat-flat-button color="accent" (click)="switchColor()" [disabled]="isEngineRunning">
-                <mat-icon>import_export</mat-icon>
-                <span *ngIf="!isMobileScreen">Flip Board</span>
-            </button>
-        </div>
+        
         <div class="player">
             <div class="line1">
                 <span id="playerTime">{{whiteTime}}</span>
+                <div class="GMpieces">
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.wQ : capturedPieces.bQ}}" *ngIf="computerColor == 'white'?capturedPieces.wQ : capturedPieces.bQ" matBadgePosition="below after" matBadgeColor="accent" svgIcon="{{computerColor}}Queen" aria-hidden="false" aria-label="Queen SVG Icon"></mat-icon>
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.wR : capturedPieces.bR}}" *ngIf="computerColor == 'white'?capturedPieces.wR : capturedPieces.bR" matBadgePosition="below after" matBadgeColor="accent" svgIcon="{{computerColor}}Rook" aria-hidden="false" aria-label="Rook SVG Icon"></mat-icon>
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.wB : capturedPieces.bB}}" *ngIf="computerColor == 'white'?capturedPieces.wB : capturedPieces.bB" matBadgePosition="below after" matBadgeColor="accent" svgIcon="{{computerColor}}Bishop" aria-hidden="false" aria-label="Bishop SVG Icon"></mat-icon>
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.wN : capturedPieces.bN}}" *ngIf="computerColor == 'white'?capturedPieces.wN : capturedPieces.bN" matBadgePosition="below after" matBadgeColor="accent" svgIcon="{{computerColor}}Knight" aria-hidden="false" aria-label="Knight SVG Icon"></mat-icon>
+                    <mat-icon matBadge="{{computerColor == 'white'?capturedPieces.wP : capturedPieces.bP}}" *ngIf="computerColor == 'white'?capturedPieces.wP : capturedPieces.bP" matBadgePosition="below after" matBadgeColor="accent" svgIcon="{{computerColor}}Pawn" aria-hidden="false" aria-label="Pawn SVG Icon"></mat-icon>
+                </div>
             </div>
             <div class="line2">
-                <h2>You</h2>
-                <h5 id="playerStatus">{{playerStatus}}</h5>
+                <div class="details">
+                    <h2>You</h2>
+                    <h5 id="playerStatus">{{playerStatus}}</h5>
+                </div>
+                <div class="action">
+                    <button mat-flat-button color="accent" (click)="undo()" [disabled]="isEngineRunning">
+                        <mat-icon>replay</mat-icon>
+                        <span *ngIf="!isMobileScreen">Undo</span>
+                    </button>
+                    <button mat-flat-button color="accent" (click)="newGame()" [disabled]="isEngineRunning">
+                        <mat-icon>autorenew</mat-icon>
+                        <span *ngIf="!isMobileScreen">New Game</span>
+                    </button>
+                    <button mat-flat-button color="accent" (click)="switchColor()" [disabled]="isEngineRunning">
+                        <mat-icon>import_export</mat-icon>
+                        <span *ngIf="!isMobileScreen">Flip Board</span>
+                    </button>
+                </div>
             </div>
         </div>
-        <br>
+        
         
       </div>
       <br><br><br>

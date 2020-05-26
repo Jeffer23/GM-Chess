@@ -1,4 +1,97 @@
-Status : {{status}}
-<div id="chessBoard" style="width: 400px;"></div>
+<div id="playersDetails">
+    <div id="whitePlayer">
+        <div class="line1">
+            <div>
+                <span class="playerName">{{gmGame.whitePlayer.playerId}}<span class="check">{{whiteStatus}}</span></span>
+            </div>
+            <div id="whiteCountry">
+
+            </div>
+        </div>
+        <div class="line2">
+            <div id="whiteScore">
+                {{gmGame.whitePlayer.playerPoint}}
+            </div>
+            <div id="whiteClock">
+                {{chessClock.whiteClock.getTime()}}
+            </div>
+            
+        </div>
+        <div class="line3 pieces">
+            <mat-icon [matBadge]="capturedPieces.bQ" *ngIf="capturedPieces.bQ" svgIcon="blackQueen" aria-hidden="false" aria-label="Queen SVG Icon"></mat-icon>
+            <mat-icon [matBadge]="capturedPieces.bR" *ngIf="capturedPieces.bR" svgIcon="blackRook" aria-hidden="false" aria-label="Rook SVG Icon"></mat-icon>
+            <mat-icon [matBadge]="capturedPieces.bB" *ngIf="capturedPieces.bB" svgIcon="blackBishop" aria-hidden="false" aria-label="Bishop SVG Icon"></mat-icon>
+            <mat-icon [matBadge]="capturedPieces.bN" *ngIf="capturedPieces.bN" svgIcon="blackKnight" aria-hidden="false" aria-label="Knight SVG Icon"></mat-icon>
+            <mat-icon [matBadge]="capturedPieces.bP" *ngIf="capturedPieces.bP" svgIcon="blackPawn" aria-hidden="false" aria-label="Pawn SVG Icon"></mat-icon>
+        </div>
+    </div>
+    <div id="blackPlayer">
+        <div class="line1">
+            <div>
+                <span class="playerName"><span class="check">{{blackStatus}}</span>{{gmGame.blackPlayer.playerId}}</span>
+            </div>
+            <div id="blackCountry">
+
+            </div>
+        </div>
+        <div class="line2">
+            <div id="blackClock">
+                {{chessClock.blackClock.getTime()}}
+            </div>
+            <div id="blackScore">
+                {{gmGame.blackPlayer.playerPoint}}
+            </div>
+        </div>
+        <div class="line3 pieces">
+            <mat-icon [matBadge]="capturedPieces.wQ" *ngIf="capturedPieces.wQ" svgIcon="whiteQueen" aria-hidden="false" aria-label="Queen SVG Icon"></mat-icon>
+            <mat-icon [matBadge]="capturedPieces.wR" *ngIf="capturedPieces.wR" svgIcon="whiteRook" aria-hidden="false" aria-label="Rook SVG Icon"></mat-icon>
+            <mat-icon [matBadge]="capturedPieces.wB" *ngIf="capturedPieces.wB" svgIcon="whiteBishop" aria-hidden="false" aria-label="Bishop SVG Icon"></mat-icon>
+            <mat-icon [matBadge]="capturedPieces.wN" *ngIf="capturedPieces.wN" svgIcon="whiteKnight" aria-hidden="false" aria-label="Knight SVG Icon"></mat-icon>
+            <mat-icon [matBadge]="capturedPieces.wP" *ngIf="capturedPieces.wP" svgIcon="whitePawn" aria-hidden="false" aria-label="Pawn SVG Icon"></mat-icon>
+        </div>
+    </div>
+</div>
+<div id="chessBoard"></div>
+<div id="action">
+    <div class="row">
+        <div>
+            <a (click)="onQuit();" *ngIf="!isGameOver">
+                <mat-icon svgIcon="quit">Quit</mat-icon>
+                <br><span>Quit</span>
+            </a>
+        </div>
+        <div>
+            <a (click)="onOfferDraw();" *ngIf="!isGameOver && !isDrawOffered">
+                <mat-icon svgIcon="shakehand">Offer Draw</mat-icon>
+                <br><span>Offer Draw</span>
+            </a>
+            <a *ngIf="!isGameOver && isDrawOffered">
+                <mat-icon svgIcon="shakehand">Offer Draw</mat-icon>
+                <br><span>Offer Draw</span>
+            </a>
+
+            <a (click)="onNewGame();" *ngIf="isGameOver">
+                <mat-icon>fiber_new</mat-icon>
+                <br><span>New Game</span>
+            </a>
+        </div>
+        <div>
+            <a (click)="onChat();" *ngIf="!isGameOver">
+                <mat-icon svgIcon="chat">Chat</mat-icon>
+                <br><span>Chat</span>
+            </a>
+            
+            <a (click)="onAnalyse();" *ngIf="isGameOver && pgn">
+                <mat-icon>view_comfy</mat-icon>
+                <br><span>Analyse</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="moves">
+    <hr>
+        <div id="pgn">Moves: {{pgn}}</div>
+    <hr>
+</div>
 
 

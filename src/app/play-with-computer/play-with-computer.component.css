@@ -15,6 +15,10 @@
         display: flex;
     }
 
+    .computer .line1 .details{
+        display: flex;
+        width: 70%;
+    }
     .computer .line1 h2 {
         margin: 0px;
     }
@@ -23,12 +27,18 @@
         display: flex;
     }
 
+    #computerTime {
+        width: 15%;
+    }
+
+
     #computerStatus {
         color: red;
     }
 
     .computerProgressBar{
         margin-top: 8px;
+        width:29%;
     }
     #chessBoard{
         width : 65%;
@@ -53,8 +63,25 @@
     .player .line2 {
         display: flex;
     }
+    .player .line2 .details{
+        display: flex;
+        width:70%
+    }
     #playerStatus {
         color: red;
+    }
+    .GMpieces {
+        width: 80%;
+        float: right;
+        padding-right: 3%;
+    }
+    .GMpieces mat-icon {
+        float: right;
+        padding-left: 5px;
+    }
+   
+    #playerTime {
+        width: 15%;
     }
 }
 @media only screen and (max-width:1200px) {
@@ -75,10 +102,19 @@
     }
     
     .player {
-        width: 30%;
-        float:left;
+        width: 100%;
     }
 
+    .player .line1 {
+        width: 100%;
+    }
+    .player .line2 {
+        width: 100%;
+    }
+    .player .line2 .details{
+        width: 30%;
+        float: left;
+    }
     .action {
         width: 70%;
         float: right;
@@ -88,5 +124,8 @@
 
     .action button {
         margin-left: 5%;
+        margin-top:3%;
     }
+
+    
 }

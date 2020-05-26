@@ -1,0 +1,134 @@
+#playersDetails{
+    width:100%;
+    display: flex;
+}
+
+#whitePlayer {
+    width:50%;
+}
+
+.line2{
+    display: flex;
+}
+
+#blackPlayer {
+    width:50%
+}
+
+.playerName {
+    width: 100%;
+    font-size: x-large;
+}
+.check {
+    color: red;
+    font-size: small;
+}
+#whitePlayer .line1 div span .check {
+    text-align: left;
+}
+
+#whitePlayer .line1 div {
+    text-align: left;
+    padding-left: 5%;
+    width: 100%;
+}
+#blackPlayer .line1 div {
+    text-align: right;
+    padding-right: 5%;
+    width: 100%;
+}
+#blackPlayer .line1 div span{
+    padding-right: 5%;
+}
+
+#blackPlayer .line1 div span .check {
+    text-align: right;
+}
+
+#whiteScore{
+    width: 50%;
+    float: left;
+    font-weight: bold;
+    padding-left:5%
+}
+#blackScore{
+    width: 50%;
+    float: right;
+    text-align: end;
+    font-weight: bold;
+    padding-right: 5%;
+   
+}
+
+#whiteClock{
+    float: right;
+    margin-right: 1%;
+    width: 50%;
+    text-align: end;
+    font-size: large;
+    color:white;
+    background-color: black;
+    text-align: center;
+}
+
+#blackClock {
+    float:left;
+    margin-left: 1%;
+    width: 50%;
+    font-size: large;
+    color:white;
+    background-color: black;
+    text-align: center;
+}
+#chessBoard{
+    width: 100%;
+    padding-left: 0.5%;
+}
+h2{
+    margin: 0px;
+}
+
+.pieces{
+    height: 30px;
+}
+#action{
+    width:100%
+}
+
+#action .row{
+    width:100%
+}
+#action .row{
+    width:100%;
+    padding-top:2%;
+    display: flex;
+}
+
+#action .row div {
+    width:33.33%;
+    text-align: center;
+}
+
+.pieces mat-icon {
+    margin-top: 10px;
+}
+
+#blackPlayer .pieces mat-icon{
+    float: right;
+}
+
+#whitePlayer .pieces {
+    padding-left: 5%;
+}
+
+#blackPlayer .pieces {
+    padding-right: 5%;
+}
+
+#moves {
+    width:100%
+}
+
+
+
+

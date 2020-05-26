@@ -1,0 +1,13 @@
+#action {
+    width: 100%;
+    position: relative;
+}
+#center {
+    margin-left: 20%;
+    display: grid;
+    margin-right:20%;
+}
+
+#center button{
+    margin-top:5%;
+}

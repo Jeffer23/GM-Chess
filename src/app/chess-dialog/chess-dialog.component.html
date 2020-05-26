@@ -1,8 +1,113 @@
-<div class="chessDialog">
+<div class="chessDialog" *ngIf="data.isGame">
     <div class="dialogHeader">
-        <h1>Game Over</h1>
+        <h1>Game Over <span *ngIf="data.wonBy"> - {{data.wonBy}} wins</span></h1>
     </div>
     <div class="dialogContent">
         <h2>{{data.reason}}</h2>
     </div>
 </div>
+
+<div class="loginDialog" *ngIf="data.isLogin">
+    <div class="dialogHeader">
+        <h1>Login Failed</h1>
+    </div>
+    <div class="dialogContent">
+        <h2>UserId and Password mismatch</h2>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.isRegistration">
+    <div class="dialogHeader">
+        <h1>Registration Failed</h1>
+    </div>
+    <div class="dialogContent">
+        <h2>{{data.message}}</h2>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.quit">
+    <div class="dialogHeader">
+        <h1>Quit?</h1>
+    </div>
+    <div class="dialogContent">
+        <button mat-flat-button color="accent" mat-dialog-close="cancel">Cancel</button>
+        <button mat-flat-button color="accent" mat-dialog-close="quit" cdkFocusInitial>Ok</button>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.opponentQuit">
+    <div class="dialogHeader">
+        <h1>Opponent Quit</h1>
+    </div>
+    <div class="dialogContent">
+       <h2>You Won</h2>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.offerDraw">
+    <div class="dialogHeader">
+        <h1>Offer Draw?</h1>
+    </div>
+    <div class="dialogContent">
+        <button mat-flat-button color="accent" mat-dialog-close="no">No</button>
+        <button mat-flat-button color="accent" mat-dialog-close="offerdraw" cdkFocusInitial>Yes</button>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.offerDrawFromOpponent">
+    <div class="dialogHeader">
+        <h3>Opponent Offered Draw</h3>
+    </div>
+    <div class="dialogContent">
+        <button mat-flat-button color="accent" mat-dialog-close="accept">Accept</button>
+        <button mat-flat-button color="accent" mat-dialog-close="reject" cdkFocusInitial>Reject</button>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.acceptDraw">
+    <div class="dialogHeader">
+        <h3>Offered Draw Accepted</h3>
+    </div>
+    <div class="dialogContent">
+        <h2>Draw</h2>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.rejectDraw">
+    <div class="dialogHeader">
+        <h3>Offered Draw Rejected</h3>
+    </div>
+    <div class="dialogContent">
+        <h2>Continue Playing</h2>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.chat">
+    <div class="dialogHeader">
+        <h3>Wait</h3>
+    </div>
+    <div class="dialogContent">
+       <h3>Implementation under progress</h3>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.promotion">
+    <div class="dialogContent">
+       <a mat-dialog-close="q"><img src="img/chesspieces/wikipedia/{{data.color}}Q.png" alt="Queen"></a>
+       <a mat-dialog-close="r"><img src="img/chesspieces/wikipedia/{{data.color}}R.png" alt="Rook"></a>
+       <a mat-dialog-close="n"><img src="img/chesspieces/wikipedia/{{data.color}}N.png" alt="Knight"></a>
+       <a mat-dialog-close="b"><img src="img/chesspieces/wikipedia/{{data.color}}B.png" alt="Bishop"></a>
+    </div>
+</div>
+
+<div class="loginDialog" *ngIf="data.findOpponent">
+    <div class="dialogHeader">
+        <h3>Loading...</h3>
+    </div>
+    <div class="dialogContent">
+       <h3>Finding Opponent...</h3>
+    </div>
+</div>
+
+
+
